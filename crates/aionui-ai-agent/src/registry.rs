@@ -871,7 +871,7 @@ fn decode_row(
         warn!(
             id = %meta.id,
             name = %meta.name,
-            "Ignoring command override for internal Ridango Agent"
+            "Ignoring command override for internal Ridango GDPR Safe"
         );
     }
     let env_override = parse_env_override(&env_override_raw);
@@ -879,7 +879,7 @@ fn decode_row(
         warn!(
             id = %meta.id,
             name = %meta.name,
-            "Ignoring environment overrides for internal Ridango Agent"
+            "Ignoring environment overrides for internal Ridango GDPR Safe"
         );
     }
 
@@ -1777,7 +1777,7 @@ mod tests {
 
     /// On a host that has *none* of the seeded CLIs installed, the
     /// public listing collapses to the rows that don't need one
-    /// (Ridango Agent is `agent_source = internal` with no `command`).
+    /// (Ridango GDPR Safe is `agent_source = internal` with no `command`).
     /// This guards the pill-bar contract: never show an unusable
     /// vendor.
     #[tokio::test]
@@ -1792,7 +1792,7 @@ mod tests {
                 .map(|m| (&m.id, m.enabled, m.available))
                 .collect::<Vec<_>>()
         );
-        // Ridango Agent (internal, no spawn command) is always available.
+        // Ridango GDPR Safe (internal, no spawn command) is always available.
         assert!(
             visible.iter().any(|m| m.agent_type == AgentType::Aionrs),
             "internal aionrs row should survive the filter"
@@ -2169,7 +2169,7 @@ mod tests {
             id: "632f31d2".to_string(),
             user_id: None,
             icon: None,
-            name: "Ridango Agent".to_string(),
+            name: "Ridango GDPR Safe".to_string(),
             name_i18n: None,
             description: None,
             description_i18n: None,

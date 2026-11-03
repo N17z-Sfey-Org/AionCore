@@ -468,7 +468,7 @@ impl IConversationRepository for StubConvRepo {
                 channel_chat_id: None,
                 extra: serde_json::json!({
                     "backend": "anthropic",
-                    "agent_name": "Ridango Agent",
+                    "agent_name": "Ridango GDPR Safe",
                     "workspace": ensure_named_workspace_path("aionui-cron-service-aionrs-workspace"),
                     "session_mode": "default",
                     "current_model_id": "claude-sonnet-4-20250514"
