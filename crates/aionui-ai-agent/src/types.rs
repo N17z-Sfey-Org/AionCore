@@ -66,6 +66,7 @@ impl BuildTaskOptions {
                 AIONUI_USER_ID_ENV
                     | AIONUI_CONVERSATION_ID_ENV
                     | AIONUI_HELPER_BIN_ENV
+                    | LEGACY_HELPER_BIN_ENV
                     | AIONUI_BASE_URL_ENV
                     | AIONUI_RUNTIME_TOKEN_ENV
             )
@@ -80,6 +81,13 @@ impl BuildTaskOptions {
             self.context
                 .runtime_env
                 .push((AIONUI_HELPER_BIN_ENV.to_owned(), helper_bin.to_owned()));
+            // Conversations started before the rename carry the old variable
+            // name in their tool-call history, and the model repeats what it
+            // sees there. Keep the old name resolvable so those commands still
+            // run; new skills, prompts and cards only mention the new name.
+            self.context
+                .runtime_env
+                .push((LEGACY_HELPER_BIN_ENV.to_owned(), helper_bin.to_owned()));
         }
         if let Some(base_url) = base_url {
             self.context
@@ -98,6 +106,8 @@ impl BuildTaskOptions {
 pub const AIONUI_USER_ID_ENV: &str = "AIONUI_USER_ID";
 pub const AIONUI_CONVERSATION_ID_ENV: &str = "AIONUI_CONVERSATION_ID";
 pub const AIONUI_HELPER_BIN_ENV: &str = "RIDANGO_HELPER_BIN";
+/// Pre-rename name of [`AIONUI_HELPER_BIN_ENV`], set to the same value.
+pub const LEGACY_HELPER_BIN_ENV: &str = "AIONUI_HELPER_BIN";
 pub const AIONUI_BASE_URL_ENV: &str = "AIONUI_BASE_URL";
 pub const AIONUI_RUNTIME_TOKEN_ENV: &str = "AIONUI_RUNTIME_TOKEN";
 pub const CONVERSATION_RUNTIME_CONTEXT_VERSION: u32 = 2;
