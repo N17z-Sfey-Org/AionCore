@@ -6,7 +6,7 @@ use std::process::ExitCode;
 use serde_json::{Value, json};
 
 const RUNTIME_ENV: [&str; 4] = [
-    "AIONUI_HELPER_BIN",
+    "RIDANGO_HELPER_BIN",
     "AIONUI_BASE_URL",
     "AIONUI_CONVERSATION_ID",
     "AIONUI_USER_ID",

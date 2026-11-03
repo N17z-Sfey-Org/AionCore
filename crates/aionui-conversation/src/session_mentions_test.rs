@@ -41,7 +41,7 @@ fn sessions_block_is_delimited_and_tab_separated_one_target_per_line() {
     assert_eq!(
         block,
         "[[AION_SESSIONS]]\n\
-         To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the delivery contract.\n\
+         To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the delivery contract.\n\
          重构-鉴权模块\tconv_1\tworkspace: same\n\
          文档站改版\tconv_2\tworkspace: /w/docs (differs from yours)\n\
          [[/AION_SESSIONS]]"
@@ -64,7 +64,7 @@ fn sessions_block_routes_to_the_session_message_skill_on_its_first_line() {
     let first_inner_line = block.lines().nth(1).expect("a line after the opening marker");
     assert_eq!(
         first_inner_line,
-        "To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the delivery contract."
+        "To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the delivery contract."
     );
     assert!(
         !first_inner_line.contains('\t'),
@@ -94,7 +94,7 @@ fn sessions_block_carries_the_capabilities_fallback_but_no_send_message_payload_
     assert!(!block.contains("send-message"), "{block}");
     // But the capabilities discovery pointer IS present.
     assert!(block.contains("session capabilities"), "{block}");
-    assert!(block.contains("$AIONUI_HELPER_BIN"), "{block}");
+    assert!(block.contains("$RIDANGO_HELPER_BIN"), "{block}");
 }
 
 #[test]

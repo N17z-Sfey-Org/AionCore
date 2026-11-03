@@ -9,7 +9,7 @@ fn same_workspace_block_matches_the_spec_shape_exactly() {
          from: 重构-鉴权模块\tconv_1\n\
          workspace: same\n\
          reply_to: conv_1\t(reply: session send-message, to=reply_to)\n\
-         If the session-message skill is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the full delivery contract.\n\
+         If the session-message skill is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the full delivery contract.\n\
          [[/AION_SESSION_MESSAGE]]"
     );
 }
@@ -49,7 +49,7 @@ fn the_block_carries_an_unconditional_capabilities_fallback_without_breaking_rep
     let block = build_session_message_block("A", "conv_1", "same", "conv_1");
     assert!(
         block.contains(
-            "If the session-message skill is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the full delivery contract."
+            "If the session-message skill is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the full delivery contract."
         ),
         "{block}"
     );

@@ -65,11 +65,11 @@ pub fn build_skills_index_text(skills: &[SkillIndex]) -> String {
     // sides together so they cannot drift apart again.
     lines.push(
         "To get a skill's full content, prefer running \
-         `printf '%s' '{\"name\":\"<name>\"}' | \"$AIONUI_HELPER_BIN\" skills show` — it also \
+         `printf '%s' '{\"name\":\"<name>\"}' | \"$RIDANGO_HELPER_BIN\" skills show` — it also \
          returns the skill's absolute directory, and \
-         `printf '%s' '{\"path\":\"<name>/<relative-path>\"}' | \"$AIONUI_HELPER_BIN\" skills cat` \
+         `printf '%s' '{\"path\":\"<name>/<relative-path>\"}' | \"$RIDANGO_HELPER_BIN\" skills cat` \
          reads its supplementary files. Both read their arguments as a JSON object on stdin and \
-         take no positional arguments; run `\"$AIONUI_HELPER_BIN\" skills capabilities` for the \
+         take no positional arguments; run `\"$RIDANGO_HELPER_BIN\" skills capabilities` for the \
          full contract."
             .to_string(),
     );
@@ -256,7 +256,7 @@ mod tests {
         let command_at = text.find("skills show").expect("channel A must be advertised");
         let protocol_at = text.find("[LOAD_SKILL:").expect("channel B must stay as the fallback");
         assert!(command_at < protocol_at, "channel A is the preferred path");
-        assert!(text.contains("$AIONUI_HELPER_BIN"));
+        assert!(text.contains("$RIDANGO_HELPER_BIN"));
         assert!(text.contains("skills cat"), "supplementary files need their own hint");
     }
 

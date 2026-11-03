@@ -1522,7 +1522,7 @@ mod tests {
         assert!(
             env.iter()
                 .any(|(key, value)| key == AIONUI_HELPER_BIN_ENV && !value.is_empty()),
-            "cron conversation runtime env should include AIONUI_HELPER_BIN"
+            "cron conversation runtime env should include RIDANGO_HELPER_BIN"
         );
         assert!(
             env.contains(&(AIONUI_BASE_URL_ENV.to_owned(), config.local_base_url())),

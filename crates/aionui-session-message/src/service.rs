@@ -59,7 +59,7 @@ pub fn build_session_message_block(from_name: &str, from_id: &str, workspace_fie
          from: {from_name}\t{from_id}\n\
          workspace: {workspace_field}\n\
          reply_to: {reply_to}\t(reply: session send-message, to=reply_to)\n\
-         If the session-message skill is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the full delivery contract.\n\
+         If the session-message skill is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the full delivery contract.\n\
          {AIONUI_SESSION_MESSAGE_END_MARKER}"
     )
 }

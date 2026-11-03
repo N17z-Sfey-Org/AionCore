@@ -1113,7 +1113,7 @@ async fn run_direct_backend_team_mcp_and_runtime_env(backend: &str, agent_id: &s
         conversation_id,
         &messages_uri,
         "Now use your real shell/command-execution tool to run exactly: \
-         printf '{}\\n' | \"$AIONUI_HELPER_BIN\" team members >/dev/null && \
+         printf '{}\\n' | \"$RIDANGO_HELPER_BIN\" team members >/dev/null && \
          test \"$AIONUI_E2E_SENTINEL\" = \"AIONUI_DIRECT_CLI_E2E_42\" && echo AIONUI_ENV_OK. \
          Only after the Team CLI fallback helper and sentinel check both succeed, reply with exactly: AIONUI_ENV_OK",
         300,
@@ -1126,7 +1126,7 @@ async fn run_direct_backend_team_mcp_and_runtime_env(backend: &str, agent_id: &s
         )
     };
     let mcp_prompt = "Call the team_members MCP tool from the aionui-team MCP server now. \
-         Do not use AIONUI_HELPER_BIN or any CLI fallback for that call. \
+         Do not use RIDANGO_HELPER_BIN or any CLI fallback for that call. \
          Only after the MCP tool succeeds, reply with exactly: TEAM_MCP_OK";
     let mut mcp_frames = Vec::new();
     for _attempt in 0..3 {
@@ -1184,7 +1184,7 @@ async fn run_direct_backend_team_mcp_and_runtime_env(backend: &str, agent_id: &s
         );
     }
     assert!(
-        shell_tool_evidence.contains("AIONUI_HELPER_BIN")
+        shell_tool_evidence.contains("RIDANGO_HELPER_BIN")
             && (shell_tool_evidence.contains("AIONUI_E2E_SENTINEL") || shell_tool_evidence.contains("AIONUI_ENV_OK")),
         "[{backend}] no streamed shell/command-execution evidence for the Team CLI fallback and sentinel check; \
          tool names={tool_names:?}"

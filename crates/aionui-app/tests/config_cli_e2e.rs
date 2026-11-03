@@ -1085,33 +1085,33 @@ async fn config_context_fails_with_stable_error_when_conversation_env_missing() 
 #[test]
 fn builtin_config_skills_use_config_cli_not_python_or_cron_helper() {
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("assets/builtin-skills/auto-inject");
-    let aionui_config = std::fs::read_to_string(root.join("aionui-config/SKILL.md")).unwrap();
+    let aionui_config = std::fs::read_to_string(root.join("ridango-config/SKILL.md")).unwrap();
     let cron = std::fs::read_to_string(root.join("cron/SKILL.md")).unwrap();
 
     for forbidden in ["python3", "aionui_api.py", "lsof", "netstat", "curl"] {
         assert!(
             !aionui_config.contains(forbidden),
-            "aionui-config skill must not mention {forbidden}"
+            "ridango-config skill must not mention {forbidden}"
         );
     }
-    assert!(aionui_config.contains("\"$AIONUI_HELPER_BIN\" config context"));
-    assert!(aionui_config.contains("\"$AIONUI_HELPER_BIN\" config capabilities"));
+    assert!(aionui_config.contains("\"$RIDANGO_HELPER_BIN\" config context"));
+    assert!(aionui_config.contains("\"$RIDANGO_HELPER_BIN\" config capabilities"));
     assert!(aionui_config.contains("assistant_id\": \"current"));
     for command in [
-        "\"$AIONUI_HELPER_BIN\" config mcp servers",
-        "\"$AIONUI_HELPER_BIN\" config providers",
-        "\"$AIONUI_HELPER_BIN\" config settings",
-        "\"$AIONUI_HELPER_BIN\" config agents",
-        "\"$AIONUI_HELPER_BIN\" config cron jobs",
-        "\"$AIONUI_HELPER_BIN\" config skills external-paths",
+        "\"$RIDANGO_HELPER_BIN\" config mcp servers",
+        "\"$RIDANGO_HELPER_BIN\" config providers",
+        "\"$RIDANGO_HELPER_BIN\" config settings",
+        "\"$RIDANGO_HELPER_BIN\" config agents",
+        "\"$RIDANGO_HELPER_BIN\" config cron jobs",
+        "\"$RIDANGO_HELPER_BIN\" config skills external-paths",
     ] {
         assert!(
             aionui_config.contains(command),
-            "aionui-config skill must document {command}"
+            "ridango-config skill must document {command}"
         );
     }
 
     assert!(!cron.contains("cron-helper"));
-    assert!(cron.contains("\"$AIONUI_HELPER_BIN\" config cron current list"));
+    assert!(cron.contains("\"$RIDANGO_HELPER_BIN\" config cron current list"));
     assert!(cron.contains("\"job_id\""));
 }

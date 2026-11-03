@@ -1519,7 +1519,7 @@ pub struct SessionBuildInputs<'a> {
     /// paths that never inject MCP (tests) ⇒ no injection.
     pub mcp_server_repo: Option<&'a Arc<dyn IMcpServerRepository>>,
     /// The conversation runtime context env (`AIONUI_USER_ID` /
-    /// `AIONUI_CONVERSATION_ID` / `AIONUI_HELPER_BIN` / `AIONUI_BASE_URL` /
+    /// `AIONUI_CONVERSATION_ID` / `RIDANGO_HELPER_BIN` / `AIONUI_BASE_URL` /
     /// `AIONUI_RUNTIME_TOKEN`, filled by `apply_conversation_runtime_context`).
     /// The legacy ACP path injects these into every agent spawn via
     /// `apply_acp_launch_policy`; the direct-CLI path forwards them through
@@ -2186,7 +2186,7 @@ fn resolve_session_cli_program(
 ///     keys are already filtered at the registry (`is_blocked_override_env_key`),
 ///     so they cannot shadow the runtime context below.
 ///  2. the `AIONUI_*` conversation runtime context (`AIONUI_USER_ID` /
-///     `AIONUI_CONVERSATION_ID` / `AIONUI_HELPER_BIN` / `AIONUI_BASE_URL` /
+///     `AIONUI_CONVERSATION_ID` / `RIDANGO_HELPER_BIN` / `AIONUI_BASE_URL` /
 ///     `AIONUI_RUNTIME_TOKEN`) — the legacy path appended these via
 ///     `apply_acp_launch_policy` for every agent spawn.
 fn assemble_spawn_env(

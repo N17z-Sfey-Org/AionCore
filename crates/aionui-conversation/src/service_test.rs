@@ -735,7 +735,7 @@ fn stub_agent_metadata_rows() -> Vec<AgentMetadataRow> {
         ("2d23ff1c", Some("claude"), "acp", "Claude Code", 100),
         ("8e1acf31", Some("codex"), "acp", "Codex CLI", 110),
         ("cc126dd5", Some("gemini"), "acp", "Gemini CLI", 120),
-        ("632f31d2", None, "aionrs", "Aion CLI", 200),
+        ("632f31d2", None, "aionrs", "Ridango Agent", 200),
         ("b7e8a9c4", Some("openclaw"), "acp", "OpenClaw", 3140),
         ("f9f61666", None, "openclaw-gateway", "OpenClaw Gateway", 3150),
         ("custom-acp-1", None, "acp", "My Custom ACP", 1500),
@@ -4334,7 +4334,7 @@ async fn send_message_injects_configured_runtime_helper_context() {
             AIONUI_HELPER_BIN_ENV.to_owned(),
             "/Applications/AionUi/aioncore".to_owned()
         )),
-        "runtime env should include AIONUI_HELPER_BIN"
+        "runtime env should include RIDANGO_HELPER_BIN"
     );
     assert!(
         options[0]

@@ -18,10 +18,10 @@ assistant; you can point it at another directory or another assistant instead.
 3. Omit `workspace` to reuse this conversation's directory; pass an absolute
    path of an existing directory to use another one.
 4. Omit `assistant_id` to reuse this conversation's assistant. To use another
-   assistant, get its id from `"$AIONUI_HELPER_BIN" config assistants list`
+   assistant, get its id from `"$RIDANGO_HELPER_BIN" config assistants list`
    first.
 5. Never pass, inline, export, echo, or set any `AIONUI_...` environment
-   variable. Call `"$AIONUI_HELPER_BIN" conversation ...` directly and pass the
+   variable. Call `"$RIDANGO_HELPER_BIN" conversation ...` directly and pass the
    payload through a stdin heredoc. Do not write payload JSON files to disk.
 6. If this conversation belongs to a team, do not use this skill.
 7. Creating does NOT send anything to the new conversation, does NOT open it,
@@ -33,7 +33,7 @@ assistant; you can point it at another directory or another assistant instead.
 ## Creating a conversation
 
 ```bash
-"$AIONUI_HELPER_BIN" conversation create <<'JSON'
+"$RIDANGO_HELPER_BIN" conversation create <<'JSON'
 {
   "name": "重构鉴权模块",
   "workspace": "/absolute/path/to/repo",
@@ -53,5 +53,5 @@ When `success` is `true` the conversation already exists.
 ## Exact schemas
 
 ```bash
-"$AIONUI_HELPER_BIN" conversation capabilities
+"$RIDANGO_HELPER_BIN" conversation capabilities
 ```

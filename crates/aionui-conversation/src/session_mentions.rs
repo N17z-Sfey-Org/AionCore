@@ -59,7 +59,7 @@ pub fn workspace_field_value(sender_workspace: Option<&str>, target_workspace: O
 /// read only by the agent. The block is therefore written entirely in English —
 /// including the `workspace:` warning below — to match the `session-message`
 /// skill it routes to.
-const SESSIONS_BLOCK_SKILL_HINT: &str = "To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the delivery contract.";
+const SESSIONS_BLOCK_SKILL_HINT: &str = "To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the delivery contract.";
 
 /// Build the sender-side block.
 ///

@@ -13,7 +13,7 @@ async fn top_level_capabilities_prints_domain_index_without_runtime_env() {
         .env_remove("AIONUI_BASE_URL")
         .env_remove("AIONUI_CONVERSATION_ID")
         .env_remove("AIONUI_USER_ID")
-        .env_remove("AIONUI_HELPER_BIN")
+        .env_remove("RIDANGO_HELPER_BIN")
         .output()
         .await
         .unwrap();

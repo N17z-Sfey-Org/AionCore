@@ -18,7 +18,7 @@ to reply.
 2. `to` must be a conversation id. Names are not addresses, and there is no
    broadcast — one `send-message` call reaches exactly one conversation.
 3. Never pass, inline, export, echo, or set any `AIONUI_...` environment variable.
-4. Commands must directly call `"$AIONUI_HELPER_BIN" session ...`. Pass payloads
+4. Commands must directly call `"$RIDANGO_HELPER_BIN" session ...`. Pass payloads
    through stdin heredocs. Do not write payload JSON files to disk.
 5. If the current conversation belongs to a team, do NOT use this skill. Use
    `team send-message` instead.
@@ -36,7 +36,7 @@ When the user typed `@@`, their message carries a block like:
 
 ```
 [[AION_SESSIONS]]
-To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `"$AIONUI_HELPER_BIN" session capabilities` for the delivery contract.
+To deliver to the conversations below, use the session-message skill (address by conversation id); if it is unavailable, run `"$RIDANGO_HELPER_BIN" session capabilities` for the delivery contract.
 重构-鉴权模块	conv_019f…	workspace: same
 文档站改版	conv_01a0…	workspace: /Users/x/docs (differs from yours)
 [[/AION_SESSIONS]]
@@ -49,7 +49,7 @@ target: `name`, tab, `id`, tab, `workspace:`. Use the **id**.
 ## Delivering a message
 
 ```bash
-"$AIONUI_HELPER_BIN" session send-message <<'JSON'
+"$RIDANGO_HELPER_BIN" session send-message <<'JSON'
 {
   "to": "conv_019f…",
   "message": "接口定完了吗？"
@@ -66,14 +66,14 @@ A delivered message arrives with this block at the top:
 from: 重构-鉴权模块	conv_019f…
 workspace: same
 reply_to: conv_019f…	(reply: session send-message, to=reply_to)
-If the session-message skill is unavailable, run `"$AIONUI_HELPER_BIN" session capabilities` for the full delivery contract.
+If the session-message skill is unavailable, run `"$RIDANGO_HELPER_BIN" session capabilities` for the full delivery contract.
 [[/AION_SESSION_MESSAGE]]
 ```
 
 Reply by sending to `reply_to` with the same command:
 
 ```bash
-"$AIONUI_HELPER_BIN" session send-message <<'JSON'
+"$RIDANGO_HELPER_BIN" session send-message <<'JSON'
 {
   "to": "conv_019f…",
   "message": "定完了，已经推到 main。"
@@ -87,7 +87,7 @@ no synchronous wait on the other side.
 ## Finding a target the user only described in prose
 
 ```bash
-"$AIONUI_HELPER_BIN" session list
+"$RIDANGO_HELPER_BIN" session list
 ```
 
 Optional stdin filters: `q` (name filter), `project_id`, `limit`, `cursor`.
@@ -109,7 +109,7 @@ For a target's workspace path, whether it is currently running a turn, or
 stuck/waiting hints:
 
 ```bash
-"$AIONUI_HELPER_BIN" diagnose conversations get <<'JSON'
+"$RIDANGO_HELPER_BIN" diagnose conversations get <<'JSON'
 { "conversation_id": "conv_019f…" }
 JSON
 ```
@@ -119,5 +119,5 @@ JSON
 For enum values, error-code meanings, and full field tables:
 
 ```bash
-"$AIONUI_HELPER_BIN" session capabilities
+"$RIDANGO_HELPER_BIN" session capabilities
 ```

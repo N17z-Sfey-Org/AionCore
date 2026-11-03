@@ -234,7 +234,7 @@ async fn an_idle_target_is_delivered_and_actually_starts_a_turn() {
     // the skill unavailable can still fetch the full contract.
     assert!(
         content.contains(
-            "If the session-message skill is unavailable, run `\"$AIONUI_HELPER_BIN\" session capabilities` for the full delivery contract."
+            "If the session-message skill is unavailable, run `\"$RIDANGO_HELPER_BIN\" session capabilities` for the full delivery contract."
         ),
         "{content}"
     );

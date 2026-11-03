@@ -40,7 +40,7 @@ fn the_skill_documents_every_wired_conversation_subcommand() {
     let body = skill_body();
     for descriptor in aionui_api_types::conversation_tool_descriptors() {
         let command = format!(
-            "\"$AIONUI_HELPER_BIN\" conversation {}",
+            "\"$RIDANGO_HELPER_BIN\" conversation {}",
             descriptor.cli_command.join(" ")
         );
         assert!(
@@ -77,7 +77,7 @@ fn the_skill_states_the_non_negotiable_rules() {
         body.contains("Omit `assistant_id` to reuse this conversation's assistant"),
         "{body}"
     );
-    assert!(body.contains("\"$AIONUI_HELPER_BIN\" config assistants list"), "{body}");
+    assert!(body.contains("\"$RIDANGO_HELPER_BIN\" config assistants list"), "{body}");
     // Rule 5 — never touch AIONUI_* env vars.
     assert!(
         body.contains("Never pass, inline, export, echo, or set any `AIONUI_...` environment variable"),
@@ -122,10 +122,10 @@ fn the_skill_does_not_reference_the_session_message_family() {
 fn the_skill_points_at_capabilities_only_as_a_fallback() {
     let body = skill_body();
     let create_at = body
-        .find("\n\"$AIONUI_HELPER_BIN\" conversation create")
+        .find("\n\"$RIDANGO_HELPER_BIN\" conversation create")
         .expect("the skill must carry a copyable create command");
     let capabilities_at = body
-        .find("\n\"$AIONUI_HELPER_BIN\" conversation capabilities")
+        .find("\n\"$RIDANGO_HELPER_BIN\" conversation capabilities")
         .expect("the skill must carry a copyable capabilities fallback command");
     assert!(
         create_at < capabilities_at,

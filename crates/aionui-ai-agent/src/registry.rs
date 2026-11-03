@@ -871,7 +871,7 @@ fn decode_row(
         warn!(
             id = %meta.id,
             name = %meta.name,
-            "Ignoring command override for internal Aion CLI agent"
+            "Ignoring command override for internal Ridango Agent"
         );
     }
     let env_override = parse_env_override(&env_override_raw);
@@ -879,7 +879,7 @@ fn decode_row(
         warn!(
             id = %meta.id,
             name = %meta.name,
-            "Ignoring environment overrides for internal Aion CLI agent"
+            "Ignoring environment overrides for internal Ridango Agent"
         );
     }
 
@@ -1742,7 +1742,7 @@ mod tests {
         assert_eq!(pi.native_skills_dirs.as_deref(), Some(&[".pi/skills".to_owned()][..]));
         // Team-capable through the CLI transport. pi advertises no optional MCP
         // transport and LIVE-probed does not load a stdio MCP server, so Team
-        // gives it the `$AIONUI_HELPER_BIN team ...` command surface instead of
+        // gives it the `$RIDANGO_HELPER_BIN team ...` command surface instead of
         // MCP tools — but that surface works, so the picker must not block it.
         // (This asserted `false` while builtin rows carried a hard veto flag; the
         // flag is gone, and blocking a CLI-coordinating agent was never right.)
@@ -1777,7 +1777,7 @@ mod tests {
 
     /// On a host that has *none* of the seeded CLIs installed, the
     /// public listing collapses to the rows that don't need one
-    /// (Aion CLI is `agent_source = internal` with no `command`).
+    /// (Ridango Agent is `agent_source = internal` with no `command`).
     /// This guards the pill-bar contract: never show an unusable
     /// vendor.
     #[tokio::test]
@@ -1792,7 +1792,7 @@ mod tests {
                 .map(|m| (&m.id, m.enabled, m.available))
                 .collect::<Vec<_>>()
         );
-        // Aion CLI (internal, no spawn command) is always available.
+        // Ridango Agent (internal, no spawn command) is always available.
         assert!(
             visible.iter().any(|m| m.agent_type == AgentType::Aionrs),
             "internal aionrs row should survive the filter"
@@ -2169,7 +2169,7 @@ mod tests {
             id: "632f31d2".to_string(),
             user_id: None,
             icon: None,
-            name: "Aion CLI".to_string(),
+            name: "Ridango Agent".to_string(),
             name_i18n: None,
             description: None,
             description_i18n: None,

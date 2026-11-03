@@ -1386,7 +1386,7 @@ mod tests {
     /// from disagreeing -- and they did: the index taught `skills show <name>`
     /// while `Show` accepts no positional arguments at all. Unit tests on either
     /// side stayed green (the text side only asserted the string mentioned
-    /// `$AIONUI_HELPER_BIN`), and the mismatch only surfaced against live agents,
+    /// `$RIDANGO_HELPER_BIN`), and the mismatch only surfaced against live agents,
     /// which spent three to five failed tool calls each recovering from it.
     #[test]
     fn skills_cli_commands_in_the_index_are_parseable() {
@@ -1399,7 +1399,7 @@ mod tests {
         // binary placeholder and runs to the end of its backticked command.
         let mut checked = 0usize;
         for segment in index.split('`') {
-            let Some((_, after_bin)) = segment.split_once("\"$AIONUI_HELPER_BIN\"") else {
+            let Some((_, after_bin)) = segment.split_once("\"$RIDANGO_HELPER_BIN\"") else {
                 continue;
             };
             let argv: Vec<&str> = after_bin.split_whitespace().collect();
